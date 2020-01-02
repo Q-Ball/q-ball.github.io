@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nick Drozdovskiy - I don't even know what this is</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/css/lightbox.min.css">
+<!-- Custom Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Raleway&subset=latin-ext" rel="stylesheet"> 
+
+<style>
+body {
+	background-color: #EDEDED;
+	color: #495057;
+	padding-top: 0;
+	padding-left: 17rem;
+	font-family: 'Raleway', sans-serif;
+}
+hr {
+	/*width:100px;
+	border-color: #cbcbcb;
+	border-width: 2px;*/
+	border-top: 1px solid rgba(0,0,0,0.15);
+}
+h3 {
+	text-transform: uppercase;
+}
+h6 {
+	margin-top: 10px;
+}
+.project-list {
+	text-transform: uppercase;
+	text-align: center;
+}
+.img-custom {
+	width: 100%;
+	border: 1px solid rgba(0,0,0,0.15);
+}
+a, a:focus, a:hover {
+	color: #495057;
+}
+.header {
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	width: 17rem;
+	height: 100vh;
+	/*background: #FFFFFD url(../images/background_side.jpg) top center;*/
+	background-color: #495057;
+	color: #FFFFFD;
+}
+.social-icons a {
+	display: inline-block;
+	height: 3.5rem;
+	width: 3.5rem;
+	background-color: #495057;
+	color: #fff !important;
+	border-radius: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	line-height: 3.5rem;
+	/*margin-right: 1rem;*/
+}
+.social-icons a:last-child {
+	margin-right: 0px;
+}
+.social-icons a:hover {
+	/*background-color: #bd5d38;*/
+}
+.image-avatar {
+	width: 140px;
+	margin-bottom: 25px;
+	/*border: 3px solid #383e44;*/
+	border: 3px solid rgba(0,0,0,0.15);
+}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.9.0/js/lightbox.min.js"></script>
+<script>
+$(function() {
+	$.ajax({
+		url: "/gallery/json.php",
+		dataType: "json",
+		cache: true,
+		success: function(data) {
+			console.log(data);
+			$.each(data, function(i, v) {
+				//$('#artwork').append('<div class="col-md-4"><a target="_blank" href="' + v["fullpath"] + '"  data-lightbox="' + v["dirname"].replace("../gallery/Albums/","") + '" data-title="' + v["filename"] + '"><div><img src="' + v["fullpath"] + '" class="img-rounded img-custom"></div><div class="text-center"><h5>' + v["filename"] + '</h5></div></a></div>');
+				$('#artwork').append('<div class="col-md-4"><a target="_blank" href="' + v["fullpath"] + '"  data-lightbox="all" data-title="' + v["filename"] + '"><div><img src="' + v["fullpath"] + '" class="img-rounded img-custom"></div><div class="text-center"><h6>' + v["filename"] + '</h6></div></a></div>');
+			});
+		}
+	});
+});
+</script>
+
+</head>
+<body>
+
+<nav class="header navbar navbar-expand-lg navbar-dark fixed-top">
+	<div class="m-auto">
+		<a href="/"><img class="image-avatar rounded-circle" src="http://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/27/27f7cd56b49c5ba60bf552d3d5bb5c2aa891ebee_full.jpg"></a>
+		<h3>Nick Drozdovskiy</h3>
+		<hr>
+		<p>My own tiny corner of the internet</p>
+		<div class="social-icons">
+			<a href="https://github.com/q-ball"><i class="fab fa-github"></i></a>
+			<a href="/gallery/"><i class="fa fa-image"></i></a>
+			<a href="#"><i class="fab fa-twitter"></i></a>
+			<a href="#"><i class="fab fa-facebook-f"></i></a>
+		</div>
+	</div>
+</nav>
+
+<div id="content" class="container-fluid p-0">
+	<section class="p-3 p-lg-5 d-flex" style="min-height:100vh;">
+		<div class="my-auto">
+			<h3 class="project-list" style="margin-bottom:40px;">ARTWORK</h3>
+			<div class="row" id="artwork"></div>
+		</div>
+	</section>
+</div>
+</body>
+</html>
